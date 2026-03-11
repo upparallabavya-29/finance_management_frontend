@@ -1,6 +1,22 @@
 import axios from 'axios'
 
-const API_URL = import.meta.env.VITE_API_URL || '/api'
+let API_URL = import.meta.env.VITE_API_URL || '/api';
+
+try {
+    if (API_URL.startsWith('http')) {
+        const urlObj = new URL(API_URL);
+        // If the path is exactly '/' or empty, assume it needs '/api'
+        if (urlObj.pathname === '/' || urlObj.pathname === '') {
+            urlObj.pathname = '/api';
+            API_URL = urlObj.toString().replace(/\/$/, '');
+        } else {
+            // Remove trailing slash for consistency
+            API_URL = API_URL.replace(/\/$/, '');
+        }
+    }
+} catch (error) {
+    console.warn('Invalid VITE_API_URL format:', error);
+}
 
 const api = axios.create({
     baseURL: API_URL,
