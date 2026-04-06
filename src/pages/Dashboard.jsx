@@ -90,7 +90,7 @@ const SummaryCard = ({ title, amount, change, icon: Icon, color, glowColor, onHi
 
 // Chart Container Component
 const ChartWrapper = ({ title, children, subtitle, activeFilter = 'M', onFilterChange }) => (
-    <div className="glass-card rounded-[24px] p-6 h-full flex flex-col">
+    <div className="glass-card rounded-[24px] p-6 h-[400px] flex flex-col">
         <div className="flex justify-between items-center mb-6">
             <div>
                 <h3 className="text-lg font-bold text-slate-900 dark:text-white">{title}</h3>
@@ -113,7 +113,7 @@ const ChartWrapper = ({ title, children, subtitle, activeFilter = 'M', onFilterC
                 </div>
             )}
         </div>
-        <div className="flex-1 min-h-[220px]">
+        <div className="flex-1 w-full relative">
             {children}
         </div>
     </div>
